@@ -1,6 +1,6 @@
 
 module Lib
-    ( validate, testFunc
+    ( validate
     ) where
 
 import Data.Char
