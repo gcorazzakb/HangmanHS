@@ -25,7 +25,7 @@ render :: Game -> String
 render (Game fails toGuess guessed) = (hangmanRender !! fails) ++ "\n" ++ shadowUnguessed toGuess guessed ++ "\nAlready Guessed: " ++ guessed
 
 shadowUnguessed :: String -> String -> String
-shadowUnguessed toGuess guessed = (\ c -> if c `elem` guessed then c else '_') . toLower <$> toGuess
+shadowUnguessed toGuess guessed =  (\c -> if toLower c `elem` guessed then c else '_') <$> toGuess
 
 gameLoop :: Game -> IO()
 gameLoop g
@@ -56,10 +56,9 @@ checkChar c g
 
 loadRandomWord :: IO String
 loadRandomWord = do
-                   g <- getStdGen
+                   g <- newStdGen
                    let r = head (randomRs (0, length wordsToGuess) g :: [Int])
                    return $ wordsToGuess !! r
-
 
 wordsToGuess :: [String]
 wordsToGuess = ["Happy", "GuessMe", "Yay", "Tannenbaum", "Haskell"]

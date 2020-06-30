@@ -5,7 +5,7 @@ import Lib
 
 main :: IO ()
 main = do 
-  loadRandomWord
+  word <-loadRandomWord
+  let startGame = Game 0 word ""
   putStrLn $ render startGame 
   gameLoop startGame
-  where startGame = Game 0 "guessMe" ""
